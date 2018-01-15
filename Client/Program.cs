@@ -11,9 +11,10 @@ namespace Client
     {
         static void Main(string[] args)
         {
-            SupplierDAO customer = new SupplierDAO();
-            SupplierDTO customerDto = new SupplierDTO(20, "assel", "assel");
-            customer.Create(customerDto);
+            DisconnectedCustomerDao customer = new DisconnectedCustomerDao();
+            CustomerDTO customerDto = new CustomerDTO();
+            customer.Delete("asd");
+            Console.ReadLine();
         }
     }
 }

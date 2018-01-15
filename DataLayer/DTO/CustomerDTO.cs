@@ -17,6 +17,8 @@ namespace DataLayer.DTO
             CompanyName = companyName;
             ContactName = contactName;
         }
+
+
         public CustomerDTO()
         {
 

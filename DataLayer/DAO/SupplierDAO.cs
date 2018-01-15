@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace DataLayer.DAO
 {
-    public class SupplierDAO : IDAO<SupplierDTO>
+    public class SupplierDAO 
     {
         private SqlConnection sqlConnection = null;
 
@@ -18,8 +18,9 @@ namespace DataLayer.DAO
         {
             using (sqlConnection = DataBaseConnectionFactory.Connection())
             {
-                string createQuery = string.Format(@"insert into  Customers
-Values('{0}', '{1}', '{2}', null, null, null, null, null, null, null, null)", t.SupplierId, t.CompanyName, t.ContactName);
+                string createQuery = string.Format(@"insert into  Suppliers
+            (CompanyName,ContactName )
+            Values('{0}', '{1}')",  t.CompanyName, t.ContactName);
                 sqlConnection.Open();
                 try
                 {

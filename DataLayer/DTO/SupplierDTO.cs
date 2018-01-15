@@ -12,9 +12,8 @@ namespace DataLayer.DTO
         public string CompanyName { get; set; }
         public string ContactName { get; set; }
 
-        public SupplierDTO(int supplierId, string companyName, string contactName)
+        public SupplierDTO( string companyName, string contactName)
         {
-            SupplierId = supplierId;
             CompanyName = companyName;
             ContactName = contactName;
         }

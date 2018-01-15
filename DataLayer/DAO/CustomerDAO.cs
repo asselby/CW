@@ -13,21 +13,30 @@ namespace DataLayer.DAO
     {
         private SqlConnection sqlConnection = null;
 
-        public void Create(CustomerDTO t)
+        public string Create(CustomerDTO t)
         {
             using (sqlConnection = DataBaseConnectionFactory.Connection())
             {
                 string createQuery = string.Format(@"use [NORTHWNDSDP-162] insert into  Customers
 Values('{0}', '{1}', '{2}', null, null, null, null, null, null, null, null)", t.CustomerId, t.ContactName, t.CompanyName) ;
                 sqlConnection.Open();
-                using (SqlCommand sqlCommand = sqlConnection.CreateCommand())
+                try
                 {
+                    using (SqlCommand sqlCommand = sqlConnection.CreateCommand())
+                    {
 
-                    sqlCommand.CommandText = createQuery;
-                    sqlCommand.CommandType = CommandType.Text;
-                    sqlCommand.ExecuteNonQuery();
+                        sqlCommand.CommandText = createQuery;
+                        sqlCommand.CommandType = CommandType.Text;
+                        sqlCommand.ExecuteNonQuery();
+                    }
                 }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("Возможно вы ввели повторяющееся Id");
+                }
+
                 sqlConnection.Close();
+                return t.CustomerId;
             }
         }
 
